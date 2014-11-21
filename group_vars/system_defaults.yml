@@ -1,0 +1,71 @@
+---
+user:
+  name: mbluemner
+directories:
+  home: "/Users/{{ user.name }}"
+homebrew:
+  repo: git://github.com/homebrew/Homebrew.git
+  dest: /opt/homebrew
+  packages:
+    -
+      name: coreutils
+    -
+      name: direnv
+    -
+      name: git
+      install_options: --with-brewed-openssl --with-prcre
+    -
+      name: reattach-to-user-namespace
+      install_options: --with-launchctl --with-pbcopy-and-pbpaste
+    -
+      name: ssh-copy-id
+    -
+      name: terminal-notifier
+    -
+      name: the_silver_searcher
+    -
+      name: tig
+    -
+      name: tmux
+    -
+      name: wget
+    -
+      name: zsh
+      install_options: --disable-etcdir
+    - name: autossh
+    - name: hub
+    - name: proctools
+osx_apps:
+  casks:
+    - name: alfred
+    - name: dropbox
+    - name: iterm2
+    - name: slate
+    - name: xquartz
+    - name: virtualbox
+    - name: boot2docker
+    - name: dash
+    - name: firefox
+    - name: github
+    - name: graphviz
+    - name: iexplorer
+    - name: heroku-toolbelt
+    - name: livereload
+    - name: google-chrome
+    - name: skype
+    - name: vagrant
+    - name: teamviewer
+    - name: sequel-pro
+    - name: vlc
+    - name: vmware-fusion
+    - name: sublime-text
+    - name: onepassword
+    - name: opera
+    - name: sophos-anti-virus-home-edition
+ruby_versions:
+  - version: 2.1.0
+node_versions:
+  - version: 0.10.33
+dotfiles:
+  dest: ~/src/dotfiles
+  repo: git://github.com/heisam/dotfiles.git

@@ -1,0 +1,36 @@
+---
+-
+  name: Setup Homebrew directory
+  file:
+    path= "{{ homebrew.dest }}"
+    mode=0755
+    owner=mbluemner
+    group=staff
+    state=directory
+  sudo: yes
+-
+  name: Install Homebrew
+  git:
+    depth=1
+    dest= "{{ homebrew.dest }}"
+    recursive=no
+    update=no
+    repo= "{{ homebrew.repo }}"
+    accept_hostkey=yes
+-
+  name: Install essential packages from Homebrew
+  homebrew:
+    name= "{{ item.name }}"
+    state= "{{ item.state | default('present') }}"
+    install_options= "{{ item.install_options | default('') }}"
+  with_items: homebrew.packages
+  environment:
+    PATH: "{{ homebrew.dest }}/bin:{{ ansible.env.PATH }}"
+-
+  name: Link brewed applications
+  command: "{{ homebrew.dest }}/bin/brew linkapps"
+-
+  name: Fetch dotfiles
+  git:
+    dest= "{{ dotfiles.dest }}"
+    repo= "{{ dotfiles.repo }}"
